@@ -29,21 +29,22 @@ app.post("/upload", function(req, res){
     upload(req, res, err => {
         fs.readFile("./uploads/" + req.file.originalname, (err, data) => {
             if(err) return console.log("This is your error", err);
-            
+
             (async () => {
                 await worker.load();
-                console.log("load");
+                // console.log("load");
 
                 await worker.loadLanguage('eng');
                 await worker.initialize('eng');
-                console.log("after initialize");
-                console.log(data);
+                // console.log("after initialize");
+                // console.log(data);
 
                 const { data: { text } } = await worker.recognize(data);
                 console.log("text should be here:");
                 console.log(text);
+                res.send(text);
                 await worker.terminate();
-              })();
+            })();   //function is immediately called
         });
     });
 });
