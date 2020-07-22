@@ -1,2 +1,2 @@
 # ocr-pdf
-Optical character recognition program for images to text
+Optical character recognition program for converting images of text into text. Uses Tesseract as the OCR engine
